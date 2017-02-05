@@ -18,21 +18,16 @@ luac.out
 *.pch
 
 # Libraries
-*.lib
-*.a
 *.la
 *.lo
 *.def
 *.exp
 
 # Shared objects (inc. Windows DLLs)
-*.dll
-*.so
 *.so.*
 *.dylib
 
 # Executables
-*.exe
 *.out
 *.app
 *.i*86
