@@ -10,7 +10,7 @@ local timer = tengine.timer
 
 local conf = require "config"
 local cmd	= require "game.cmd"
-local game = require "game"
+local lobby = require "lobby"
 
 local INFO_MSG = tengine.INFO_MSG
 local ERROR_MSG = tengine.ERROR_MSG
@@ -28,7 +28,7 @@ local function command(command, ...)
 end
 
 local function main(...)
-    game.init(...)
+    lobby.init(...)
 
 	actor.start(command)
 
