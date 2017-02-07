@@ -24,7 +24,7 @@ end
 
 local function on_accept(session)
     DEBUG_MSG("on_accept session %d %d", session, agent.count())
-    agent.new(listener, session)
+    agent.create(listener, session)
 end
 
 local function on_read(session, data, size)
@@ -40,10 +40,7 @@ end
 
 local function on_closed(session, err)
     DEBUG_MSG("on_closed session %d, error %s %d", session, err, agent.count())
-    local a = agent.find(session)
-    if a then
-        a:lost(session, err)
-    end
+    agent.destory(session)
 end
 
 local function listen(port)

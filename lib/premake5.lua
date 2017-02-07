@@ -26,41 +26,32 @@ workspace "ALL"
       	optimize "On"
     filter{}
 
-project "aes128"
-	kind "SharedLib"
-	language "c++"
-	targetdir "../bin/"
-	targetprefix ""
+project "pbc"
+	kind "StaticLib"
+	language "C"
 	includedirs {
-		"./aes128/",
-		"./lua/",
+		"./pbc",
+		"./pbc/src"
 	}
 	files {
-		"./aes128/*.*",
+		"./pbc/src/*.c",
+		"./pbc/src/*.h",
+		"./pbc/pbc.h"
 	}
 
-	if os.is("windows") then
-		defines {
-			"LUA_BUILD_AS_DLL",
-			"LUA_LIB"
-		}
-		libdirs {"./lua/"}
-		links{"lua"}
-	else
-		linkoptions {"-fPIC --shared"}
-    end
-
-project "aoi"
+project "protobuf"
 	kind "SharedLib"
 	language "c"
 	targetdir "../bin/"
 	targetprefix ""
 	includedirs {
 		"./lua/",
+		"./pbc",
+		"./pbc/src"
 	}
 	
 	files {
-		"./aoi/*.c",
+		"./pbc/binding/lua53/*.c",
 	}
 	if os.is("windows") then
 		defines {
@@ -69,7 +60,7 @@ project "aoi"
 		}
 
 		libdirs {"./lua/"}
-		links{"lua"}
+		links{"lua", "pbc"}
 	else
 		linkoptions {"-fPIC --shared"}
     end
