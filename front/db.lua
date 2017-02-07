@@ -10,12 +10,9 @@ local INFO_MSG = tengine.INFO_MSG
 local ERROR_MSG = tengine.ERROR_MSG
 local p = tengine.p
 
-
 local define = require("lib.object").define
 local manager = require("lib.object").manager
 local store = require("lib.store")
-
-local factory = require("gate.core").factory
 
 local _M = {}
 

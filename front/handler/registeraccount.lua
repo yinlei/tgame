@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
--- register.lua
+-- login.lua
 -------------------------------------------------------------------------------
 local tostring = tostring
 
@@ -8,13 +8,13 @@ local ERROR_MSG = tengine.ERROR_MSG
 local p = tengine.p
 
 local _M = {
-    ID = 'RegisterAccount'
+    ID = 'LoginGameAccount'
 }
 
 function _M.handle(agent, message)
     p("login", message)
 
-    INFO_MSG("RegisterAccount ok !!!")
+    INFO_MSG("LoginGameAccount ok !!!")
 end
 
 return _M
