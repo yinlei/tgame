@@ -32,7 +32,7 @@ function _M.init(self, conf)
     if succ and ret == 0 then
         INFO_MSG("register to global success ...")
     else
-        ERROR_MSG("rgister to global failed !!!")
+        ERROR_MSG("register to global failed !!!")
     end
 end
 
