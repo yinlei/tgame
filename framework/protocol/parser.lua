@@ -358,7 +358,7 @@ function parser.parser(text,filename)
 	return t
 end
 
-local pb = require "framework.protobuf"
+local pb = require "framework.protocol.protobuf"
 
 function parser.register(fileset , path)
 	local all = {}

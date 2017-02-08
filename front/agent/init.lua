@@ -11,7 +11,13 @@ require (_PACKAGE.."/message")
 local agents = {}
 
 local create = function(listener, session)
-    return agent:new(listener, session)
+    local _agent = agent:new(listener, session)
+    if not _agent then
+        return nil
+    end
+
+    agents[session] = _agent
+    return _agent
 end
 
 local destory = function(session)

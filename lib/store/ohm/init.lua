@@ -7,9 +7,9 @@ local ohm = require(_PACKAGE.."/model")
 
 local models = {}
 
-local function model(name, define)
+local function model(name, scheme)
     if not models[name] then
-        local _model = ohm.model(name, define.model)
+        local _model = ohm.model(name, scheme)
         models[name] = _model
     end
 

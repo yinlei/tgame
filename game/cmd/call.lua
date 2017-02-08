@@ -9,8 +9,6 @@ local ERROR_MSG = tengine.ERROR_MSG
 
 local p = tengine.p
 
-local manager = require ("lib.object").manager
-
 local  _M = {}
 
 function _M.command(func, service, ...)

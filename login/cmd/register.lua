@@ -12,9 +12,9 @@ local db = require "db"
 
 local  _M = {}
 
-function _M.register()
+function _M.register_account()
     -- 1. 查找玩家
-    local ret = db.check_account(args.username)
+    local ret = db.register_account(args.username)
     -- 如果失败直接返回
     if ret > 0 then
         return ret

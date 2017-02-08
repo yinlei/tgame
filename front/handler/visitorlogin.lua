@@ -8,13 +8,13 @@ local ERROR_MSG = tengine.ERROR_MSG
 local p = tengine.p
 
 local _M = {
-    ID = 'LoginGameAccount'
+    ID = 'VisitorLogin'
 }
 
 function _M.handle(agent, message)
     p("login", message)
 
-    INFO_MSG("LoginGameAccount ok !!!")
+    INFO_MSG("VisitorLogin ok !!!")
 end
 
 return _M

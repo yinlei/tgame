@@ -1,0 +1,48 @@
+package tgame;
+
+message Person {
+    required string name = 1;
+    required int32 id = 2;        // Unique ID number for this person.
+    optional string email = 3;
+
+    enum PhoneType {
+        MOBILE = 0;
+        HOME = 1;
+        WORK = 2;
+    }
+
+    message PhoneNumber {
+        required string number = 1;
+        optional PhoneType type = 2 [default = HOME];
+    }
+
+    repeated PhoneNumber phone = 4;
+}
+
+enum ProtocolType {
+    ProtocolNone = 0;
+    //LoginGameID = 1;
+    //LoginGameAccount = 2;
+    //VisitorLogin = 3;
+    //RegisterAccount = 4;
+}
+
+message Packet {
+	optional ProtocolType type = 1;	//	消息号
+	optional string name = 2;		//	消息名
+    optional bytes data = 3;		//	数据
+}
+
+
+
+// 登录用户信息
+message AccountInfo {
+    optional int32 face = 1;
+    optional int32 userid = 2;
+    optional int32 gameid = 3;
+    optional int32 groupid = 4;
+    optional int32 customid = 5;
+}
+
+
+// 

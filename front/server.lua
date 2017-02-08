@@ -5,7 +5,7 @@ local c 	= tengine.c
 local actor = tengine.actor
 local server = tengine.server
 
-local agent = require "agent"
+local agent = require('front.agent')
 
 local INFO_MSG = tengine.INFO_MSG
 local DEBUG_MSG = tengine.DEBUG_MSG

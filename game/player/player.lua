@@ -10,7 +10,7 @@ local class = require "lib.middleclass"
 local _M = class("player")
 
 function _M:initialize(...)
-    
+    self.id = 0
 end
 
 return _M

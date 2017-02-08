@@ -1,0 +1,59 @@
+package tgame;
+
+import "protocol.proto";
+
+// ID登录
+message LoginGameID {
+    required int32 version = 1;
+    required string machine = 2;
+
+    required int32 id = 3;
+    required string password = 4;
+    optional int32 flag = 5;
+}
+
+// 帐号登录
+message LoginGameAccount {
+    optional int32 version = 1;
+    optional string machine = 2;
+
+    optional string account = 3;
+    optional string password = 4;
+    optional int32 flag = 5;
+}
+
+// 游客登录
+message VisitorLogin {
+    optional int32 face = 1;
+    optional int32 gender = 2;
+    optional int32 version = 3;
+    optional int32 flag = 4;
+    optional string name = 5;
+    optional string password = 6;
+}
+
+// 注册账号
+message RegisterAccount {
+    optional int32 version = 1;
+    optional string machine = 2;
+
+    optional string password = 3;
+
+    optional int32 face = 4;
+    optional int32 gender = 5;
+    optional string account = 6;
+    optional string name = 7;
+
+    optional int32 flag = 8;
+}
+
+// 登录成功
+message LoginResult {
+    enum ResultType {
+        MOBILE = 0;
+        HOME = 1;
+        WORK = 2;
+    }  
+    required ResultType result = 1;
+    //optional AccountInfo info = 2;
+}

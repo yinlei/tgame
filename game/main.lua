@@ -3,8 +3,6 @@
 -------------------------------------------------------------------------------
 local T = require "tengine"
 
-require "game.object"
-
 local actor = tengine.actor
 local timer = tengine.timer
 
@@ -28,18 +26,9 @@ local function command(command, ...)
 end
 
 local function main(...)
-    lobby.init(...)
-
 	actor.start(command)
 
-    local global = actor.sync("global")
-
-    local succ, ret = global.register_service("game", actor.self())
-    if succ and ret == 0 then
-        INFO_MSG("register to global success ...")
-    else
-        ERROR_MSG("rgister to global failed !!!")
-    end
+    lobby:init(...)
 
     local function gc()
         collectgarbage()
@@ -48,7 +37,6 @@ local function main(...)
     end
 
     timer.callback(100, gc)
-
 
     INFO_MSG("game service started ...")
 end

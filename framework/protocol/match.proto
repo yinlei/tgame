@@ -1,0 +1,3 @@
+package tgame;
+
+import "protocol.proto";

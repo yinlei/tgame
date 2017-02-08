@@ -10,8 +10,6 @@ local INFO_MSG = tengine.INFO_MSG
 local ERROR_MSG = tengine.ERROR_MSG
 local p = tengine.p
 
-local define = require("lib.object").define
-local manager = require("lib.object").manager
 local store = require("lib.store")
 
 local _M = {}
@@ -52,23 +50,5 @@ function _M.data(name, key)
     return data, model
 end
 
-function _M.create_object_with_key(type, key)
-    local data, model = _M.data(type, key)
-
-    local object
-    if data and model then
-        local db_id = data.id
-        data.id = nil
-
-        local id = 0
-        object = factory.create_object_from_db_data(type, id, db_id, data, db, model)
-    end
-
-    if not object then
-        ERROR_MSG("db create_object_with_key failed !!!")
-    end
-
-    return object
-end
 
 return _M

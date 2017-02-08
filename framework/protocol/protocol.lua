@@ -1,19 +1,23 @@
 --------------------------------------------------------------------------------
--- proto.lua
+-- protocol.lua
 --------------------------------------------------------------------------------
+local _PACKAGE = (...):match("^(.+)[%./][^%./]+") or ""
+
 local ERROR_MSG = tengine.ERROR_MSG
 
-local parser = require "framework.parser"
+local p = tengine.p
+
+local parser = require(_PACKAGE .. '/parser')
+local protobuf = require(_PACKAGE .. '/protobuf')
 
 local _M = {}
 
-local succ = parser.register("protocol.proto","framework/")
-
-if not succ then
+function _M.registerproto(filename, path)
+	return parser.register(filename, path)
 end
 
-function _M.register(filename)
-	local file, ret = io.open(filename,"rb")
+function _M.register(filename, path)
+	local file, ret = io.open(path .. filename,"rb")
 
 	if not file then
 		ERROR_MSG("proto register file error: %s", ret)
@@ -28,11 +32,10 @@ end
 
 function _M.encode(name, message)
 	local packet = {
-		type = name,
-		name = 'tgame.' .. name,
-		data = protobuf.encode(name, message)
+		--type = name,
+		name = name,
+		data = protobuf.encode('tgame.' .. name, message)
 	}
-
 	return protobuf.encode("tgame.Packet", packet)
 end
 
@@ -43,12 +46,12 @@ function _M.decode(data, len)
 		return err, nil, nil, nil
 	end
 
-	local message, err = protobuf.decode(packet.name, packet.data)
+	local message, err = protobuf.decode('tgame.'..packet.name, packet.data)
 	if err then
 		return err, nil, nil, nil
 	end
 
-	return nil, ret.type, ret.name, message
+	return nil, packet.type, packet.name, message
 end
 
 return _M

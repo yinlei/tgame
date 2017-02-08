@@ -1,0 +1,50 @@
+package tgame;
+
+import "protocol.proto";
+
+// 注册账号
+message RegisterAccount {
+    optional int32 version = 1;
+    optional string machine = 2;
+
+    optional string password = 3;
+
+    optional int32 face = 4;
+    optional int32 gender = 5;
+    optional string account = 6;
+    optional string name = 7;
+
+    optional int32 flag = 8;
+}
+
+// 用户基本信息结构
+message PlayerInfo  {
+    optional int32 id;
+    optional int32 game;
+    optional int32 group;
+
+    optional int32 face;
+    optional int32 custom;
+    optional bool gender;
+    
+}
+
+// 请求起立
+message PlayerStandUp {
+    required int32 table;
+    required int32 chair;
+    optional bool forceleave;
+}
+
+// 请求坐下
+message PlayerSitDown {
+    required int32 table;
+    required int32 chair;
+    optional string password;
+}
+
+// 用户状态
+message PlayerStatus {
+    required int32 id;
+
+}

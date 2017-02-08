@@ -12,15 +12,21 @@ local db = require "db"
 -------------------------------------------------------------------------------
 local  _M = {}
 
-function _M.login(src, args)
+function _M.login_account(info)
     -- 1. 查找玩家
-    local ret = db.check_account(args.username)
+    local succ, ret = pcall(db.check_account, info.account)
+
+    if not succ then
+        ERROR_MSG("db check account failed !!! %s", succ)
+        return
+    end
+    
     -- 如果失败直接返回
     if not ret then
-        return {false, nil}
+        return
     end
 
-    return {true, ret}
+    return ret
 end
 
 return _M

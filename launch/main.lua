@@ -12,8 +12,8 @@ T.start(
         -- 全局服务
         --actor.newservice('global')
         -- 前端服务
-        actor.newservice('front')
+        --actor.newservice('front')
         -- 游戏服务
-        --actor.newservice('game')
+        actor.newservice('game')
    end
 )

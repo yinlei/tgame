@@ -17,10 +17,10 @@ local handlers = require("front.handler")
 local _M = require (_PACKAGE.."/agent")
 
 function _M:handler(data, size)
-    local succ, type, name, message = protocol.decode(data, size)
+    local err, type, name, message = protocol.decode(data, size)
 
-    if not succ then
-        ERROR_MSG(succ)
+    if err then
+        ERROR_MSG(err)
         return
     end
 

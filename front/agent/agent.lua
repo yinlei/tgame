@@ -24,5 +24,13 @@ function _M:get_listener()
     return self.listener
 end
 
+function _M:get_client_address()
+    if self.listener then
+        return self.listener:remoteaddress(self.session)
+    end
+
+    return ""
+end
+
 return _M
 

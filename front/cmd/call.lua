@@ -1,15 +1,11 @@
 --------------------------------------------------------------------------------
 -- entity call
 --------------------------------------------------------------------------------
-
 local actor = tengine.actor
 
 local ERROR_MSG = tengine.ERROR_MSG
 
 local p = tengine.p
-
-local global = require("lib.object").global
-local manager = require("lib.object").manager
 
 local server = require "server"
 -------------------------------------------------------------------------------

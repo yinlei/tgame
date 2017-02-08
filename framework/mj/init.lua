@@ -10,11 +10,12 @@ local p = tengine.p
 
 local class = require('lib.middleclass')
 
-local super = require(_PACKAGE .. 'base')
+local super = require('framework.base')
 
 local _M = class("mj", super)
 
 function _M:initialize(fw)
+	p('mj initialize')
 	super.initialize(self, fw)
 end
 

@@ -10,12 +10,18 @@ local class = require "lib.middleclass"
 local _M = class("table")
 
 --- 初始化
-function _M:initialize(id, ...)
+function _M:initialize(id, conf)
     self.id = id
+
+    if not conf.chair then
+        error('conf no chair count !!!')
+    end
+    
+    self.chair = conf.chair
     
     self.players = {}
 
-    self.logic = nil
+    self.logic = require('apps.'.. conf.game):new(self)
 end
 
 --- 获取桌子编号

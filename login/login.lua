@@ -7,9 +7,7 @@ local timer = tengine.timer
 local INFO_MSG = tengine.INFO_MSG
 local ERROR_MSG = tengine.ERROR_MSG
 
-local agent = require "agent"
 local db = require "db"
-local server = require "server"
 local cmd	= require "login.cmd"
 
 local function command(command, ...)
@@ -22,7 +20,7 @@ return function(conf)
 		error("can't find db config !!!")
 	end
 
-	--db.init(conf)
+	db.init(conf)
 
 	actor.start(command)
 

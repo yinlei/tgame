@@ -27,14 +27,19 @@ function _M.check_account(name)
         return
     end
 
+    INFO_MSG("check account [%s] ...", name)
+
     local _account = account:with(db, "account", name)
-    p(_account)
 
     if not _account then
         return nil
     end
 
     return _account
+end
+
+function _M.register_account(info)
+    
 end
 
 return _M
