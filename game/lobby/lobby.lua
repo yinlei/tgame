@@ -32,8 +32,6 @@ function _M:get_option()
     return self.__option
 end
 
-
-
 function _M:on_player_enter(kind, player)
     -- TODO
     return true

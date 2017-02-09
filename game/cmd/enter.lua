@@ -31,7 +31,16 @@ function _M.command(id, agent, kind)
         return
     end
 
-    return lobby:on_player_enter(id)
+    -- 条件检测
+
+    -- 创建玩家
+    _player = player.create(id, info)
+
+    _player:set_session(session)
+    _player:set_clientaddr(clientaddr)
+    _player:set_activetime(os.time())
+
+    lobby:on_player_enter(_player)
 end
 
 return _M
