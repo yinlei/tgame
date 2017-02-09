@@ -17,6 +17,25 @@ message RegisterAccount {
     optional int32 flag = 8;
 }
 
+// 进入大厅
+message EnterLobby {
+    required int32 kind = 1;
+}
+
+
+// 大厅配置
+message SLobbyServerInfo {
+    // 桌子数
+    required int32 table = 1;
+    // 椅子数
+    required int32 chair = 2;
+
+    // 大厅类型
+    required int32 type = 3;
+    // 大厅规则
+    required int32 rule = 4;
+}
+
 // 用户基本信息结构
 message PlayerInfo  {
     optional int32 id;

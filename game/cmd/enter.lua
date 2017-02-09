@@ -15,19 +15,23 @@ local lobby = require('game.lobby')
 
 local  _M = {}
 
-function _M.command(id, info)
+function _M.command(id, agent, kind)
+    -- 大厅类型是否一致
+    if lobby:get_option().kind ~= kind then
+        ERROR_MSG("lobby kind failed !!!")
+        return
+    end
+    -- TODO 检测版本
 
+    -- 玩家处理
     local _player = player.find(id)
     if not _player then
         ERROR_MSG("player has enter game !!!")
+        -- TODO 是否掉线重入
         return
     end
 
-    _player = player.create(id, info)
-
-    lobby.on_player_enter(_player)
-
-    return true
+    return lobby:on_player_enter(id)
 end
 
 return _M

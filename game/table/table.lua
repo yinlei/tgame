@@ -5,6 +5,8 @@ local INFO_MSG = tengine.INFO_MSG
 local DEBUG_MSG = tengine.DEBUG_MSG
 local ERROR_MSG = tengine.ERROR_MSG
 
+local p = tengine.p
+
 local class = require "lib.middleclass"
 
 local _M = class("table")
@@ -21,7 +23,9 @@ function _M:initialize(id, conf)
     
     self.players = {}
 
-    self.logic = require('apps.'.. conf.game):new(self)
+    self.logic = require('apps.'.. conf.service):new(self)
+
+    INFO_MSG("table[%d] initialize ok ...", id)
 end
 
 --- 获取桌子编号
@@ -31,6 +35,7 @@ end
 
 --- 获取玩家数量
 function _M:get_player_count()
+
 end
 
 

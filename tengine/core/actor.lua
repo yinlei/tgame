@@ -118,8 +118,9 @@ function actor.start(func)
 	raw_callback = func
 end
 
-function actor.newservice(name)
-	return c.start(name)
+function actor.newservice(name, ...)
+    local args = table.concat({...}, " ")
+	return c.start(name, args)
 end
 
 function actor.self()

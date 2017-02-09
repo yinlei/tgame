@@ -1,3 +1,52 @@
 package tgame;
 
 import "protocol.proto";
+
+// 私人大厅信息 s->c
+message PrivateGameInfo {
+    required int32 kind = 1;
+    // 玩家局数
+    required int32 round = 2;
+    // 消耗点数
+    required int32 point = 3;
+    // 游戏类型
+    required int32 type = 4;
+    // 游戏规则
+    required int32 rule = 5;
+}
+
+// 房间类型
+enum PrivateRoomType {
+    kPrivateRoomPrivate = 0;
+    kPrivateRoomPublic = 1;
+}
+
+// 创建房间 c->s
+message CreatePrivateGame {
+    // 游戏类型
+    required int32 type = 1;
+    // 游戏局数
+    required int32 round = 2;
+    // 子类型
+    required int32 subtype = 3;
+    // 游戏规则
+    required int32 rule = 4;
+}
+
+// 加入房间 c->s
+message JoinPrivateGame {
+    required int32 room  = 1;
+}
+
+// 房间信息
+message PrivateRoomInfo {
+    required int32 round = 1;
+    // 游戏类型
+    required int32 type = 2;
+    // 
+}
+
+// 解散房间
+message DismissPrivateGame {
+    
+}
