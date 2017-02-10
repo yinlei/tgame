@@ -22,48 +22,53 @@ message EnterLobby {
     required int32 kind = 1;
 }
 
+message EnterLobbyFailed {
+    optional int32 result = 1;
+    optional string error = 2;
+}
+
 
 // 大厅配置
-message SLobbyServerInfo {
+message LobbyServerInfo {
     // 桌子数
-    required int32 table = 1;
+    optional int32 table = 1;
     // 椅子数
-    required int32 chair = 2;
+    optional int32 chair = 2;
 
     // 大厅类型
-    required int32 type = 3;
+    optional int32 type = 3;
     // 大厅规则
-    required int32 rule = 4;
+    optional int32 rule = 4;
 }
 
 // 用户基本信息结构
 message PlayerInfo  {
-    optional int32 id;
-    optional int32 game;
-    optional int32 group;
+    optional int32 id = 1;
+    optional int32 game = 2;
+    optional int32 group = 3;
 
-    optional int32 face;
-    optional int32 custom;
-    optional bool gender;
+    optional int32 face = 4;
+    optional int32 custom = 5;
+    optional bool gender = 6;
     
 }
 
 // 请求起立
 message PlayerStandUp {
-    required int32 table;
-    required int32 chair;
-    optional bool forceleave;
+    required int32 table = 1;
+    required int32 chair = 2;
+    optional bool forceleave = 3;
 }
 
 // 请求坐下
 message PlayerSitDown {
-    required int32 table;
-    required int32 chair;
-    optional string password;
+    required int32 table = 1;
+    required int32 chair = 2;
+    optional string password = 3;
 }
 
 // 用户状态
 message PlayerStatus {
-    required int32 id;
+    required int32 id = 1;
 
 }

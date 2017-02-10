@@ -15,21 +15,21 @@ local _M = class("agent")
 _M:include(stateful)
 
 function _M:initialize(listener, session)
-    self.session = session
-    self.listener = listener
+    self.__session = session
+    self.__listener = listener
 end
 
-function _M:get_session()
-    return self.session
+function _M:session()
+    return self.__session
 end
 
-function _M:get_listener()
-    return self.listener
+function _M:listener()
+    return self.__listener
 end
 
-function _M:get_client_address()
-    if self.listener then
-        return self.listener:remoteaddress(self.session)
+function _M:client_address()
+    if self.__listener then
+        return self.__listener:remoteaddress(self.__session)
     end
 
     return ""

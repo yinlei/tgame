@@ -29,7 +29,8 @@ local gameoption = {
     max_player = 500,
     -- 桌子数目
     table = 10,
-
+    type = 0,
+    rule = 0,
 }
 
 T.start(

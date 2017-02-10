@@ -14,26 +14,26 @@ local protocol = require('framework.protocol')
 
 local behavior = require("client.behavior")
 
-local on_read = function(self, data, size)
-    local succ, type, name, message = protocol.decode(data, size)
-
-    if not succ then
-        ERROR_MSG(succ)
-        return
-    end
-
-    self.behavior:run({self, name, message})
-end
-
-local on_closed = function(self, err)
-    self.channel  = nil
-end
-
 local connected = function(self)
     return self.channel ~= nil
 end
 
 local connect = function(self, address)
+    local on_read = function(data, size)
+        p("on_read", data, size)
+        local err, type, name, message = protocol.decode(data, size)
+        if err then
+            ERROR_MSG(succ)
+            return
+        end
+        p(name, message)
+        self.behavior:run({'net', self, name, message})
+    end
+
+    local on_closed = function(err)
+        self.channel  = nil
+    end
+
     self.channel = channel.connect(address, on_read, on_closed)
 
     return self:connected()
@@ -59,7 +59,7 @@ local start = function(self, address)
         return
     end
 
-    self.behavior:run(self)
+    self.behavior:run({'system', self})
 end
 
 local methods = {

@@ -7,26 +7,26 @@ local ERROR_MSG = tengine.ERROR_MSG
 
 local p = tengine.p
 
-local server = require "server"
--------------------------------------------------------------------------------
+local agent = require('front.agent')
+
 local  _M = {}
 
-function _M.command(f, context, ...)
-    local id = context.id or 0
-    local _object = manager.get(id)
+function _M.command(f, id, ...)
 
-    if not _object then
-        ERROR_MSG("cann't find object !!!")
+    local _agent = agent.find(id)
+
+    if not _agent then
+        ERROR_MSG("cann't find agent[%d] !!!", id)
         return
     end
 
-    local func = _object[f]
+    local func = _agent[f]
     if not func or type(func) ~= 'function' then
-        ERROR_MSG("cann't find func(%s) !!!", f)
+        ERROR_MSG("cann't find func[%s] !!!", f)
         return
     end
-
-    return func(_object, ...)
+    p({...})
+    return func(_agent, ...)
 end
 
 return _M

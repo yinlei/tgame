@@ -17,15 +17,8 @@ local db
 
 function _M.init(conf)
     db = redis.new(conf.redis or 'redis')
-    if not db then
-        ERROR_MSG("db init failed !!!")
-    end
 
-    db:call("FLUSHDB")
-end
-
-function _M.driver()
-    return db
+    assert(db)
 end
 
 function _M.check_account(name)

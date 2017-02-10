@@ -21,7 +21,9 @@ _M:include(stateful)
 
 function _M:initialize()
     self.tables = {}
-    INFO_MSG("lobby initialize ok ...")
+
+    -- 被踢的玩家
+    self.__kicks = {}
 end
 
 function _M:get_conf()
@@ -30,15 +32,6 @@ end
 
 function _M:get_option()
     return self.__option
-end
-
-function _M:on_player_enter(kind, player)
-    -- TODO
-    return true
-end
-
-function _M.on_player_leave(player)
-    
 end
 
 return _M

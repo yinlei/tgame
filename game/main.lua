@@ -36,7 +36,7 @@ local function main(...)
     local gconf = json.decode(args[1])
     local goption = json.decode(args[2])
 
-    p(gconf, goption)
+    --p(gconf, goption)
 
     lobby:start(gconf, goption)
 

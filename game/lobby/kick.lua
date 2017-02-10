@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------
--- normalstate.lua
+-- kick.lua
 --------------------------------------------------------------------------------
 local _PACKAGE = (...):match("^(.+)[%./][^%./]+") or ""
 
@@ -8,12 +8,10 @@ local DEBUG_MSG = tengine.DEBUG_MSG
 local ERROR_MSG = tengine.ERROR_MSG
 local p = tengine.p
 
-local _M = require (_PACKAGE.."/lobby"):addState('normal')
+local player =  require('game.player')
 
-function _M:on_player_enter()
-    
-end
+local _M = require (_PACKAGE.."/lobby")
 
-function _M:on_player_leave()
+function _M:kick(id)
     
 end

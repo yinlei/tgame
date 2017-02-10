@@ -8,8 +8,10 @@ local actor = tengine.actor
 local ERROR_MSG = tengine.ERROR_MSG
 local p = tengine.p
 
+local account = require('framework.model.account')
+
 local db = require "db"
--------------------------------------------------------------------------------
+
 local  _M = {}
 
 function _M.login_account(info)
@@ -27,6 +29,26 @@ function _M.login_account(info)
     end
 
     return ret
+end
+
+-- 游客登陆
+function _M.visitor_login(message)
+    p("visitor_login", message)
+
+    local _driver = db.driver()
+
+    message.account = "dotest"
+
+    local _account = account:with(_driver, "account", 'dotest')
+    if _account then
+        return
+    end
+
+    local id = assert(account:save(_driver, message))
+
+    _account = account:fetch(_driver, id)
+
+    return _account
 end
 
 return _M

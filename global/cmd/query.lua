@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------
--- register_globally.lua
+-- query.lua
 --------------------------------------------------------------------------------
 local string_format = string.format
 
@@ -16,7 +16,7 @@ local service = require "service"
 local  _M = {}
 
 function _M.command(sid, conf, option)
-    --p("register game", sid, conf, option)
+    p("register game", sid, conf, option)
     return true
 end
 

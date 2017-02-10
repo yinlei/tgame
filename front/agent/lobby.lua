@@ -1,20 +1,24 @@
 --------------------------------------------------------------------------------
--- privatestate.lua
+-- lobby.lua
 --------------------------------------------------------------------------------
 local _PACKAGE = (...):match("^(.+)[%./][^%./]+") or ""
+
+local table_insert, string_len = table.insert, string.len
 
 local INFO_MSG = tengine.INFO_MSG
 local DEBUG_MSG = tengine.DEBUG_MSG
 local ERROR_MSG = tengine.ERROR_MSG
 local p = tengine.p
 
-local _M = require (_PACKAGE.."/lobby"):addState('private')
+local protocol = require('framework.protocol')
 
-function _M:on_player_enter()
-    
-end
+local handlers = require("front.handler")
 
-function _M:on_player_leave()
+local agent = require (_PACKAGE.."/agent")
+
+local _M = agent:addState('lobby')
+
+function _M:dispatch(name, message)
     
 end
 

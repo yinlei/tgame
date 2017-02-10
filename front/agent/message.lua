@@ -24,6 +24,10 @@ function _M:handler(data, size)
         return
     end
 
+    self:dispatch(name, message)
+end
+
+function _M:dispatch(name, message)
     local handler = handlers[name]
     if not handler then
         ERROR_MSG("can't find handler %s", name)
@@ -41,9 +45,10 @@ function _M:handler(data, size)
 end
 
 function _M:send(name, message)
-    local listener = self.listener
+    --p("send", name, message)
+    local listener = self.__listener
     if listener then
         local buff = protocol.encode(name, message)
-        listener:send(self.session, buff, string_len(buff))
+        listener:send(self.__session, buff, string_len(buff))
     end
 end

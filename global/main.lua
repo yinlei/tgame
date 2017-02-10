@@ -8,13 +8,19 @@ local timer = T.timer
 
 local INFO_MSG = T.INFO_MSG
 
+local p = T.p
+
 local conf = require "config"
 local cmd	= require "global.cmd"
 
 local world = require "world"
 
 local function command(command, ...)
-	local f = assert(cmd[command])
+	local f = cmd[command]
+    if not f then
+        return
+    end
+    
 	return f(...)
 end
 

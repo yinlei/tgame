@@ -3,6 +3,8 @@
 --------------------------------------------------------------------------------
 local _PACKAGE = (...):match("^(.+)[%./][^%./]+") or ""
 
+local actor = tengine.actor
+
 local INFO_MSG = tengine.INFO_MSG
 local DEBUG_MSG = tengine.DEBUG_MSG
 local ERROR_MSG = tengine.ERROR_MSG
@@ -14,11 +16,15 @@ function _M:start(conf, option)
     self.__conf = conf
     self.__option = option
 
+    p(self.__conf, self.__option)
+
     -- 创建桌子
     for i = 1, option.table do
         local _table = table:new(i, conf)
-        self.tables[i] = _table
+        self.__tables[i] = _table
     end
+
+    self:gotoState('private', self)
     
     -- 注册全局
     local _global = actor.sync("global")

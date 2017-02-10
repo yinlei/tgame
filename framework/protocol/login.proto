@@ -50,10 +50,10 @@ message RegisterAccount {
 // 登录成功
 message LoginResult {
     enum ResultType {
-        MOBILE = 0;
-        HOME = 1;
-        WORK = 2;
-    }  
+        kLoginSuccess = 0;
+        kLoginFailed = 1;
+    }
     required ResultType result = 1;
-    //optional AccountInfo info = 2;
+    optional string error = 2;
+    optional AccountInfo info = 3;
 }

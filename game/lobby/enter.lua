@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------
--- state.lua
+-- enter.lua
 --------------------------------------------------------------------------------
 local _PACKAGE = (...):match("^(.+)[%./][^%./]+") or ""
 
@@ -12,10 +12,37 @@ local player =  require('game.player')
 
 local _M = require (_PACKAGE.."/lobby")
 
-function _M:after_enter()
-    _player = player.create(id, info)
+function _M:enter(id, agent, info)
+    -- 是否被踢
+    local kick_time = self.__kicks[id] or 0
+    if (kick_time+3600) > os.time() then
+        INFO_MSG("您已被管理员请出房间,1小时之内不能进入！")
+        return
+    else
+        self.__kicks[id] = nil
+    end
 
-    _player:set_session(session)
-    _player:set_clientaddr(clientaddr)
-    _player:set_activetime(os.time())
+    -- TODO
+    -- 大厅的限制判定(最低分 最高分 会员 满人)
+    
+    local _player = player.create(id, agent, info)
+
+    if not _player then
+        ERROR_MSG("create player failed !!!")
+        return
+    end
+
+    -- 大厅配置
+    local LobbyServerInfo = {
+        table = self.__option.table,
+        chair = self.__conf.chair,
+        type = self.__option.type,
+        rule = self.__option.rule,
+    }
+
+    _player:send("LobbyServerInfo", LobbyServerInfo)
+
+    -- 玩家数据
+
+    return _player
 end
