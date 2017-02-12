@@ -22,15 +22,20 @@ enum PrivateRoomType {
 }
 
 // 创建房间 c->s
-message CreatePrivateGame {
+message CreatePrivateGameRequest {
     // 游戏类型
-    required int32 type = 1;
+    required int32 kind = 1;
     // 游戏局数
     required int32 round = 2;
     // 子类型
-    required int32 subtype = 3;
+    required int32 type = 3;
     // 游戏规则
     required int32 rule = 4;
+}
+
+message CreatePrivateGameResponse {
+    // 房间编号
+    required int32 number = 1;
 }
 
 // 加入房间 c->s

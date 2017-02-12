@@ -20,7 +20,7 @@ local _M = class("lobby")
 _M:include(stateful)
 
 function _M:initialize()
-    self.tables = {}
+    self.__tables = {}
 
     -- 被踢的玩家
     self.__kicks = {}

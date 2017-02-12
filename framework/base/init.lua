@@ -9,12 +9,11 @@ local class = require "lib.middleclass"
 
 local _M = class("logic")
 
-function _M:initialize(fw)
-	self.framework = fw
-    self.players = {}
+function _M:initialize(table)
+	self.__table = table
 end
 
---- 消息
+--- 逻辑消息
 function _M:on_game_message(...)
     -- TODO
 end
@@ -25,7 +24,7 @@ function _M:on_game_start()
 end
 
 --- 游戏结束
-function _M:on_game_over()
+function _M:on_game_end()
     -- TODO
 end
 

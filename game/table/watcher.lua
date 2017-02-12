@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
--- message.lua
+-- watcher.lua
 -------------------------------------------------------------------------------
 local _PACKAGE = (...):match("^(.+)[%./][^%./]+") or ""
 
@@ -12,13 +12,7 @@ local p = tengine.p
 
 local _M = require (_PACKAGE.."/table")
 
---- 发送所有玩家的消息
-function _M:send()
-end
-
---- 
-
---- 桌子状态
-function _M:send_status()
-
+--- 获取旁观者数目
+function _M:watcher_count()
+    return #self.__watchers
 end

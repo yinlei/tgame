@@ -14,9 +14,8 @@ local super = require('framework.base')
 
 local _M = class("mj", super)
 
-function _M:initialize(fw)
-	p('mj initialize')
-	super.initialize(self, fw)
+function _M:initialize(...)
+	super.initialize(self, ...)
 end
 
 --- 游戏开始
@@ -27,7 +26,7 @@ end
 function _M:on_game_over()
 end
 
---- 场景
+--- 游戏场景
 function _M:on_game_scene()
 end
 
