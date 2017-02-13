@@ -15,6 +15,7 @@ local _M = class("xuezhan", super):include(_game, _player, _logic, _handler)
 
 --- 常量定义
 _M.static.GAME_NAME = '血战麻将'
+
 _M.static.GAME_PLAYER = 4
 
 -- 空闲状态

@@ -15,6 +15,12 @@ local class = require "lib.middleclass"
 
 local _M = class("table")
 
+--- 常量
+-- 断线次数
+_M.static.MAX_OFFLINE_COUNT = 3
+-- 断线时间
+_M.static.MAX_OFFLINE_TIME = 60000
+
 --- 初始化
 function _M:initialize(id, conf)
     if not conf.chair then

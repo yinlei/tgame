@@ -14,24 +14,32 @@ local _M = require (_PACKAGE.."/table")
 
 --- 创建定时器
 function _M:create_timer(interval, count, ...)
-    local count = 1
-    if interval > 0 then
-        count = 0
-    end
 
-    _timer:add(interval, interval, count, ...)
+    if interval < 0 then
+        interval = 0
+    end    
 
-    local timer_id = self:add_local_timer(start, interval, count, 
-		function(id, args)
-			if type(self.on_timer) == "function" then
-				self:on_timer(id, args)
-			end
-		end, args)
+    local _id = self.__timer:add(interval, interval, count, 
+        function(id, args)
+            self:on_timer(id, args)
+        end, ...)
 
-    return timer_id
+    return _id
 end
 
 --- 摧毁定时器
 function _M:destory_timer(id)
     self.__timer:del(id)
+end
+
+--- 定时处理
+function _M:on_timer(id, ...)
+    if id == self.__offline_timer then
+        if not self.__gamestarted then
+            return false
+        end
+
+    else
+        self.__logic:on_timer(id, ...)
+    end
 end
