@@ -19,6 +19,13 @@ function _M:initialize(id, agent, info)
     -- 桌子信息
     self.__table = 0
     self.__chair = 0
+
+    -- 时间
+    self.__sitdow_time = 0
+    self.__standup_time = 0
+
+    self.__startgame_time = 0
+    self.__endgame_time = 0
 end
 
 function _M:id()

@@ -1,0 +1,15 @@
+package xuezhan;
+
+// 游戏开始
+message S_GameStart {
+    // 骰子
+    optional int32 dice = 1;
+    // 庄家
+    required int32 banker = 2;
+    // ...
+}
+
+// 出牌
+message C_OutCard {
+    required int32 card = 1;
+}

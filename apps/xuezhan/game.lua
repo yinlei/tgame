@@ -1,53 +1,39 @@
 --------------------------------------------------------------------------------
--- logic.lua
+-- game.lua
 --------------------------------------------------------------------------------
 local INFO_MSG = tengine.INFO_MSG
 local DEBUG_MSG = tengine.DEBUG_MSG
 local ERROR_MSG = tengine.ERROR_MSG
 local p = tengine.p
 
-local class = require "lib.middleclass"
+local sm = require("framework").start_mode
 
-local super = require "framework.mj"
+local _M = {}
 
-local _M = class("xuezhan", super)
+--- 游戏状态
 
---- 消息
-function _M:on_game_message(...)
+function _M:on_initialize(table)
+    -- 初始化
+    self.__game_type = 0
+    self.__table:set_startmode(sm.START_MODE_FULL_READY)
+
+    return true
 end
 
 --- 游戏开始
 function _M:on_game_start()
+    -- 洗牌
+    self.__dice = {}
 end
 
 --- 游戏结束
-function _M:on_game_over()
+function _M:on_game_end()
+
 end
 
---- 场景
+--- 游戏场景
 function _M:on_game_scene()
-end
 
---- 玩家进入
-function _M:on_player_enter(chairid, player)
-	-- nil
-end
-
---- 玩家离开
-function _M:on_player_left(chairid, player)
-	-- nil
-end
-
---- 玩家坐下
-function _M:on_player_sitdown(chairid, player, looker)
-end
-
---- 玩家起立
-function _M:on_player_standup(chairid, player, looker)
-end
-
---- 玩家准备
-function _M:on_player_ready(chairid, player, ...)
 end
 
 return _M

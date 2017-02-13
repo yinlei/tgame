@@ -9,4 +9,5 @@ return {
     priority_queue = require (_PACKAGE.."/priority_queue"),
     balance = require (_PACKAGE.."/balance"),
     weaktable = require (_PACKAGE.."/weaktable"),
+    timer = require (_PACKAGE .. "/timer"),
 }

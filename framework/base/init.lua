@@ -7,10 +7,24 @@ local ERROR_MSG = tengine.ERROR_MSG
 
 local class = require "lib.middleclass"
 
+local protocol = require "framework.protocol"
+
 local _M = class("logic")
 
-function _M:initialize(table)
+function _M:initialize(table, conf)
 	self.__table = table
+
+    -- 注册游戏协议
+    protocol.register("protocol.pb", "apps/" .. conf.service)
+
+    if type(self.on_initialize) == 'function' then
+        self:on_initialize(table)
+    end
+end
+
+--- 获取桌子
+function _M:table()
+    return self.__table
 end
 
 --- 逻辑消息

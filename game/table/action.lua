@@ -63,13 +63,10 @@ function _M:sitdown(chair, player, ...)
     -- 设置座位
     self.__players[chair] = player
 
-    
-
-
     self.__loigc:on_sitdown()
 end
 
 --- 玩家准备
 function _M:ready(chair, player)
-
+    
 end

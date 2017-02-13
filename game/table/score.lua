@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
--- message.lua
+-- scor.lua
 -------------------------------------------------------------------------------
 local _PACKAGE = (...):match("^(.+)[%./][^%./]+") or ""
 
@@ -12,20 +12,7 @@ local p = tengine.p
 
 local _M = require (_PACKAGE.."/table")
 
---- 发送所有玩家的消息
-function _M:send(chair, ...)
-    if chair == 0 then
-
-    else
-        local _player = self:player(chair)
-        if not _player then
-        end
-    end
-end
-
---- 
-
---- 桌子状态
-function _M:send_status()
-
+--- 写入积分
+function _M:write(chair, ...)
+    -- TODO
 end

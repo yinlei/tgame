@@ -85,11 +85,47 @@ function _M:end_game(status)
 
     self.__gamestatus = status
 
+    -- TODO游戏记录
 
+    -- 游戏结束处理
+    if not self.__gamestarted then
+        for i = 1, self.__chair do
+            local _player  = self:player(i)
+            if _player then
+                -- 更新游戏结束时间
+                _player.__endgame_time = os.time()
+
+                -- TODO解锁游戏币
+
+                -- 处理掉线玩家
+                if _player:status() == ps.PLAYER_STATUS_OFFLINE then
+  
+                end
+                
+                _player->set_status(ps.PLAYER_STATUS_SITDOWN, self:id(), i);
+            end
+        end
+    end
 
     -- 状态机处理
+    self:on_game_end(self, 0, nil, status)
     
     -- 逻辑处理
+
+    -- 处理是否要踢出不符合条件的玩家
+    if not self.__gamestarted then
+         for i = 1, self.__chair do
+            local _player  = self:player(i)
+            if _player then
+                  
+            end
+        end       
+    end
+
+    self:end_table()
+
+    -- 更新状态
+    self:send_status()
 end
 
 --- 结束桌子
