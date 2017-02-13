@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------
--- logic.lua
+-- poker.lua
 --------------------------------------------------------------------------------
 local _PACKAGE = string.gsub(...,"%.","/") or ""
 
@@ -10,12 +10,12 @@ local p = tengine.p
 
 local class = require('lib.middleclass')
 
-local super = require('framework.base')
+local super = require(_PACKAGE .. 'base')
 
 local _M = class("mj", super)
 
-function _M:initialize(...)
-	super.initialize(self, ...)
+function _M:initialize(fw)
+	super.initialize(self, fw)
 end
 
 --- 游戏开始
@@ -26,7 +26,7 @@ end
 function _M:on_game_over()
 end
 
---- 游戏场景
+--- 场景
 function _M:on_game_scene()
 end
 

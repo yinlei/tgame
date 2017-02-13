@@ -7,6 +7,8 @@ local INFO_MSG = tengine.INFO_MSG
 local DEBUG_MSG = tengine.DEBUG_MSG
 local ERROR_MSG = tengine.ERROR_MSG
 
+local timer = tengine.helper.timer
+
 local p = tengine.p
 
 local class = require "lib.middleclass"
@@ -53,8 +55,15 @@ function _M:initialize(id, conf)
     -- 旁观玩家
     self.__watchers = {}
 
+    -- 定时器
+    self.__timer = timer.new(1000)
+
     -- 游戏逻辑
-    self.__logic = require('apps.'.. conf.service):new(self)
+    self.__logic = require('apps.'.. conf.service):new(self, conf)
+
+    if not self.__logic then
+        error("__logic create failed !!!")
+    end
 
     INFO_MSG("table[%d] initialize ok ...", id)
 end
@@ -62,6 +71,20 @@ end
 --- 获取桌子编号
 function _M:id()
     return self.__id
+end
+
+--- 设置游戏开始模式
+function _M:set_startmode(mode)
+    self.__startmode = mode
+end
+
+--- 设置游戏状态
+function _M:set_gamestatus(status)
+    self.__gamestatus = status
+end
+
+function _M:gamestatus()
+    return self.__gamestatus
 end
 
 return _M

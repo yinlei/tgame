@@ -23,7 +23,15 @@ local _player_status = {
     PLAYER_STATUS_OFFLINE = 6,
 }
 
+--- 游戏状态
+local _game_status = {
+    GAEM_STATUS_FREE = 0,
+    GAME_STATUS_PLAY = 100,
+    GAME_STATUS_WAIT = 200,
+}
+
 return {
     start_mode = _start_mode,
+    game_status = _game_status,
     player_status = _player_status,
 }
