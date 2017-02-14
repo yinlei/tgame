@@ -36,4 +36,9 @@ function _M:on_player_ready(chair, player, ...)
 
 end
 
+--- 玩家掉线
+function _M:on_player_offline(chair, player)
+
+end
+
 return _M

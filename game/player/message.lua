@@ -13,4 +13,5 @@ local _M = require (_PACKAGE.."/player")
 
 --- 系统消息
 function _M:send_system_message(...)
+    
 end

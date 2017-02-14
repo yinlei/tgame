@@ -41,6 +41,25 @@ message LobbyServerInfo {
     optional int32 rule = 4;
 }
 
+// 玩家各种时间信息
+message TimeInfo {
+    optional int32 entertime = 1;
+    optional int32 leavetime = 2;
+    optional int32 starttime = 3;
+    optional int32 endtime = 4;
+}
+
+// 玩家各种分数
+message ScoreInfo {
+    optional int32 score= 2;
+    optional int32 wincount = 2;
+    optional int32 losecount = 3;
+    optional int32 drawcount = 4;
+    optional int32 fleecount = 5;
+
+    optional int32 exp = 6; 
+}
+
 // 用户基本信息结构
 message PlayerInfo  {
     optional int32 id = 1;
@@ -51,6 +70,14 @@ message PlayerInfo  {
     optional int32 custom = 5;
     optional bool gender = 6;
     
+    optional ScoreInfo score = 7;
+    optional TimeInfo time = 8;
+}
+
+// 其他用户信息
+message OtherPlayerInfo {
+    optional int32 id = 1;
+    optional int32 game = 2;    
 }
 
 // 请求起立
@@ -67,8 +94,52 @@ message PlayerSitDown {
     optional string password = 3;
 }
 
+// 请求旁观
+message PlayerLookOn {
+    required int32 table = 1;
+    required int32 chair = 2;
+}
+
 // 用户状态
 message PlayerStatus {
     required int32 id = 1;
+    optional int32 table = 2;
+    optional int32 chair = 3;
+    optional int8 status = 4;
+}
 
+// 用户分数
+message PlayerScore {
+    required int32 id = 1;
+    optional ScoreInfo score = 2;
+}
+
+// 桌子状态
+message TableStatus {
+    optional int8 lock = 1;
+    optional int8 status = 2;
+}
+
+message STableInfo {
+    optional int32 count = 1;
+    repeated TableStatus statuss = 2;
+}
+
+message STableStatus {
+    required int32 id = 1;
+    optional TableStatus status = 2;
+}
+
+// 服务器错误提示
+message SResultFailed {
+    enum ResultCode {
+        kResultCodeSuccess = 0;
+        kResultCodeNormal = 1;
+        kResultCodeNoGold = 2;
+        kResultCodeNoScore = 3;
+        kResultCodePassword = 4;
+    }
+
+    optional ResultCode code = 1;
+    optional string des = 2;
 }

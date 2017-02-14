@@ -23,9 +23,15 @@ function _M:send(chair, ...)
     end
 end
 
---- 
-
---- 桌子状态
+--- 发送桌子状态
 function _M:send_status()
-
+    local STableStatus = {
+        id = self:id(),
+        status = {
+            lock = self:locked(),
+            status = self:status(),
+        }
+    }
+    -- TODO 广播
+    -- 手机端暂时不用发送
 end

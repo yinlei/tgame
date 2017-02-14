@@ -21,8 +21,6 @@ function _M.create_private_game(id, ...)
     if not _player then
         return
     end
-
-    
 end
 
 function _M.join_private_game(account, args)
@@ -56,4 +54,6 @@ function _M.join_private_game(account, args)
     if not lobby:join(_player, _table) then
         _player:send_system_message("加入房间失败。", 0)
     end
+end
+
 return _M

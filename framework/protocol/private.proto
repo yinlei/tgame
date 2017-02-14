@@ -53,5 +53,16 @@ message PrivateRoomInfo {
 
 // 解散房间
 message DismissPrivateGame {
-    
+    optional dismiss = 1;
+}
+
+// 解散信息
+message PrivateDismissInfo {
+
+}
+
+// 结算信息
+message PrivateEndInfo {
+    repeated int32 scores = 1;
+    repeated int8 actions = 2;
 }

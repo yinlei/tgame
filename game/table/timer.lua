@@ -38,7 +38,6 @@ function _M:on_timer(id, ...)
         if not self.__gamestarted then
             return false
         end
-
     else
         self.__logic:on_timer(id, ...)
     end

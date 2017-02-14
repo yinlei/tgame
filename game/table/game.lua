@@ -64,7 +64,7 @@ function _M:dismiss_game()
     -- 游戏还没开始
     if  not self.__tablestarted then return false end
 
-    if self.__gamestarted and not self.__logic:on_game_end(0, nil, ) then
+    if self.__gamestarted and not self.__logic:on_game_end(0, nil, nil) then
         return false
     end
 
@@ -102,7 +102,7 @@ function _M:end_game(status)
   
                 end
                 
-                _player->set_status(ps.PLAYER_STATUS_SITDOWN, self:id(), i);
+                _player:set_status(ps.PLAYER_STATUS_SITDOWN, self:id(), i);
             end
         end
     end
@@ -137,7 +137,7 @@ function _M:end_table()
 
         if self.__startmode == sm.START_MODE_ALL_READY or
             self.__startmode == sm.START_MODE_FULL_READY or
-            self.__startmode == sm.START_MODE_PAIR_READY or then
+            self.__startmode == sm.START_MODE_PAIR_READY then
             self.__tablestarted = false
         end
     end
